@@ -46,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 100,),
             Source.isEmpty ? const Center (child: const CircularProgressIndicator(),):
-            Text(Source[0].name!),
+            Text
+              (Source[0].name!),
           ],
         ),
       );
