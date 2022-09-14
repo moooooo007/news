@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:news/SourcesResponse.dart';
+import 'package:news/Moudels/SourcesResponse.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:news/Widget/tabstyle.dart';
+import '../Widget/newslist.dart';
 
 class HomeScreen extends StatefulWidget {
   static var RoutName = "HomeScreen";
@@ -13,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List <Sources> Source = [];
-
+  int currentindex = 0 ;
   @override
   Widget build(BuildContext context) {
     if (Source.isEmpty){GetApi();};
@@ -34,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 35,),
                     const Text("General News",
@@ -44,10 +47,36 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 )
             ),
-            const SizedBox(height: 100,),
+            const SizedBox(height: 10,),
             Source.isEmpty ? const Center (child: const CircularProgressIndicator(),):
-            Text
-              (Source[0].name!),
+           DefaultTabController(
+             length:Source.length ,
+             child: Expanded(
+               child: Column(
+                 children: [
+                   TabBar(
+                     onTap: (index){
+                       currentindex=index;
+                       setState(() {
+                       });
+                     },
+                     isScrollable: true,
+                     indicatorColor: Colors.transparent,
+                     tabs :Source.map((Sources) {
+                       return tabstyle(source:Sources,selected:Source.indexOf(Sources)==currentindex);
+                     }).toList(),
+                   ),
+                   Expanded(
+                       child:TabBarView(
+                        children: Source.map((e) {
+                         return newslist(e);
+                        }).toList(),
+                       )
+                   )
+                    ],
+               ),
+             ),
+           )
           ],
         ),
       );
