@@ -1,15 +1,10 @@
 class SourcesResponse {
-  SourcesResponse({
-      this.status, 
-      this.sources,
-      this.code,
-     this.massege
-  });
+  SourcesResponse({this.status, this.sources, this.code, this.massege});
 
   SourcesResponse.fromJson(dynamic json) {
     status = json['status'];
     code = json["code"];
-    massege = json ["massage"];
+    massege = json["massage"];
     if (json['sources'] != null) {
       sources = [];
       json['sources'].forEach((v) {
@@ -17,15 +12,22 @@ class SourcesResponse {
       });
     }
   }
+
   String? status;
   List<Sources>? sources;
   String? code;
   String? massege;
-SourcesResponse copyWith({  String? status,
-  List<Sources>? sources,
-}) => SourcesResponse(  status: status ?? this.status,
-  sources: sources ?? this.sources,code: code ?? this.code,massege: massege ?? this.massege
-);
+
+  SourcesResponse copyWith({
+    String? status,
+    List<Sources>? sources,
+  }) =>
+      SourcesResponse(
+          status: status ?? this.status,
+          sources: sources ?? this.sources,
+          code: code ?? code,
+          massege: massege ?? massege);
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['status'] = status;
@@ -34,7 +36,6 @@ SourcesResponse copyWith({  String? status,
     }
     return map;
   }
-
 }
 
 /// id : "abc-news"
@@ -47,13 +48,14 @@ SourcesResponse copyWith({  String? status,
 
 class Sources {
   Sources({
-      this.id, 
-      this.name, 
-      this.description, 
-      this.url, 
-      this.category, 
-      this.language, 
-      this.country,});
+    this.id,
+    this.name,
+    this.description,
+    this.url,
+    this.category,
+    this.language,
+    this.country,
+  });
 
   Sources.fromJson(dynamic json) {
     id = json['id'];
@@ -64,6 +66,7 @@ class Sources {
     language = json['language'];
     country = json['country'];
   }
+
   String? id;
   String? name;
   String? description;
@@ -71,21 +74,26 @@ class Sources {
   String? category;
   String? language;
   String? country;
-Sources copyWith({  String? id,
-  String? name,
-  String? description,
-  String? url,
-  String? category,
-  String? language,
-  String? country,
-}) => Sources(  id: id ?? this.id,
-  name: name ?? this.name,
-  description: description ?? this.description,
-  url: url ?? this.url,
-  category: category ?? this.category,
-  language: language ?? this.language,
-  country: country ?? this.country,
-);
+
+  Sources copyWith({
+    String? id,
+    String? name,
+    String? description,
+    String? url,
+    String? category,
+    String? language,
+    String? country,
+  }) =>
+      Sources(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        url: url ?? this.url,
+        category: category ?? this.category,
+        language: language ?? this.language,
+        country: country ?? this.country,
+      );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
@@ -97,5 +105,4 @@ Sources copyWith({  String? id,
     map['country'] = country;
     return map;
   }
-
 }
