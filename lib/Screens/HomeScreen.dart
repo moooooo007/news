@@ -23,9 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
       GetApi();
     }
     ;
-    return Scaffold(
+    return
+      Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
+      body:
+      Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(

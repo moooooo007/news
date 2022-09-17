@@ -40,7 +40,7 @@ class newslist extends StatelessWidget {
   Future<NewsBody?> GetNews() async {
     try {
       http.Response response = await http.get(Uri.parse(
-          "https://newsapi.org/v2/everything?apiKey=fa640ce09d8d4898affd2c40d91b0fa5&sources${sssource.id}"));
+          "https://newsapi.org/v2/everything?apiKey=fa640ce09d8d4898affd2c40d91b0fa5&sources=${sssource.id}"));
       NewsBody newsBody = NewsBody.fromJson(jsonDecode(response.body));
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         return newsBody;
@@ -49,7 +49,7 @@ class newslist extends StatelessWidget {
       }
     } on Exception catch (_) {
       Fluttertoast.showToast(
-          msg: "Filed Load, Please Check Your Connection",
+          msg: "loading error, Please Check Your Connection",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.black,
